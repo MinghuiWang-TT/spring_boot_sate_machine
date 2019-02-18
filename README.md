@@ -1,1 +1,1 @@
-# spring_boot_sate_machine
+# spring_boot_state_machine
