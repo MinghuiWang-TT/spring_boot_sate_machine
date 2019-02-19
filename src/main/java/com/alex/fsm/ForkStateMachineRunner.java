@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Operation implements CommandLineRunner {
-  private static final Logger logger = LoggerFactory.getLogger(Operation.class);
+@Profile({"FORK"})
+public class ForkStateMachineRunner implements CommandLineRunner {
+  private static final Logger logger = LoggerFactory.getLogger(ForkStateMachineRunner.class);
 
   @Autowired
   private StateMachine<String, String> stateMachine;
@@ -26,5 +28,4 @@ public class Operation implements CommandLineRunner {
     logger.info("Alex Final State:" + stateMachine.getState().getId());
     stateMachine.stop();
   }
-
 }

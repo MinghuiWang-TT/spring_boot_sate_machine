@@ -7,12 +7,13 @@ import org.springframework.statemachine.state.State;
 import org.springframework.statemachine.transition.Transition;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("rawtypes")
 @Component
-public class StateMachineListener extends StateMachineListenerAdapter<String, String> {
+public class StateMachineListener extends StateMachineListenerAdapter {
   private static final Logger logger = LoggerFactory.getLogger(StateMachineListener.class);
 
   @Override
-  public void transitionEnded(Transition<String, String> transition) {
+  public void transitionEnded(Transition transition) {
     StringBuilder sb = new StringBuilder();
     sb.append("TransitionEnded source:");
     if (transition.getSource() != null) {
@@ -37,7 +38,7 @@ public class StateMachineListener extends StateMachineListenerAdapter<String, St
   }
 
   @Override
-  public void stateChanged(State<String, String> from, State<String, String> to) {
+  public void stateChanged(State from, State to) {
     StringBuilder sb = new StringBuilder();
     sb.append("StateChanged from:");
     if (from != null) {
@@ -53,5 +54,4 @@ public class StateMachineListener extends StateMachineListenerAdapter<String, St
     }
     logger.info("Alex:" + sb.toString());
   }
-
 }
